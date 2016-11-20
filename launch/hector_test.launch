@@ -1,0 +1,15 @@
+<!--
+  Used for visualising rplidar in action.  
+  
+  It requires rplidar.launch.
+ -->
+<launch>
+  <include file="rplidar.launch" />
+  <include file="rplidar_mapping.launch" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find slam_on_back)/rviz/rplidar.rviz" />
+  <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0 0 0 0 0 base_link laser_link 100" />
+
+  <node pkg="rqt_graph" type="rqt_graph" name="rqt_graph_monitor" />
+  <node pkg="rqt_tf_tree" type="rqt_tf_tree" name="rqt_tf_tree" />
+</launch>
+
